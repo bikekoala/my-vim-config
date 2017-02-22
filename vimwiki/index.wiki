@@ -1,0 +1,21 @@
+== vsync - weibo sync ==
+
+=== DB Design: ===
+*tencent*
+    `id` INT(10) PRIMARY KEY UNSIGEND NOT NULL AUTO_INCREMENT COMMENT '自增长id'
+    `access_token` CHAR(42) NOT NULL COMMENT '访问凭证'
+    `refresh_token` CHAR(42) NOT NULL COMMENT '刷新凭证'
+    `openid` CHAR(42) NOT NULL '用户统一标识'
+    `ctime` INT(10) UNSIGEND NOT NULL COMMENT '创建时间'
+*sina*
+    `id` INT(10) PRIMARY KEY UNSIGEND NOT NULL AUTO_INCREMENT COMMENT '自增长id'
+    `access_token` CHAR(42) NOT NULL COMMENT '访问凭证'
+    `uid` INT(10) UNSIGEND NOT NULL COMMENT '用户id'
+    `ctime` INT(10) UNSIGEND NOT NULL COMMENT '创建时间'
+*sync*
+    `id` CHAR(32) PRIMARY KEY  NOT NULL COMMENT '自增长id'
+    `t_id` CHAR(42) NOT NULL COMMENT '腾讯表id'
+    `s_id` CHAR(42) NOT NULL COMMENT '新浪表id'
+    `type` TINYINT(2) UNSIGEND NOT NULL COMMENT '同步方式(1双向2关闭3腾讯->新浪4新浪->腾讯)'
+    `ctime` INT(10) UNSIGEND NOT NULL COMMENT '创建时间'
+    `mtime` INT(10) UNSIGEND NOT NULL COMMENT '修改时间'
