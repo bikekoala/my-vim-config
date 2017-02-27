@@ -1,7 +1,7 @@
 "个人配置信息(popfeng@yeah.net)
 
 "基本配置
-set ic "查找时忽略大小写
+"set ic "查找时忽略大小写
 set nonu "显示行号
 set ruler "在右下角显示光标的坐标
 set hlsearch "高亮显示搜索结果
@@ -75,7 +75,7 @@ autocmd FileType php noremap <C-L> :!php -l %<CR>
 "php doc注释插件
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net>'
+let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
 
 "vim session插件配置
 let g:session_autoload = 'no'

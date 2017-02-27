@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/sunxw/dev/onethink/ThinkPHP'
 let g:netrw_dirhist_2='/home/sunxw/dev/ucw_portal/.git'
 let g:netrw_dirhist_3='/home/sunxw/dev/azure/tests'
+let g:netrw_dirhist_4='/root/dev/linkwheel-admin/resources/views'
