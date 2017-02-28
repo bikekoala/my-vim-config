@@ -66,9 +66,6 @@ let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
                      \ 'path_html': '~/.vim/vimwiki_html/', 
                      \ 'auto_export': 0}]
 
-"snipMate配置
-let g:snips_author = 'popfeng <popfeng@yeah.net>'
-
 "php定制内容
 autocmd FileType php noremap <C-L> :!php -l %<CR>
 
