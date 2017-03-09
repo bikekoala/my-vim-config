@@ -10,7 +10,7 @@ set showcmd "在ruler左边显示当前正在输入的命令
 set expandtab "将tab键改为空格，默认是8个
 set tabstop=2 "将tab键改为2个空格
 set cindent "使用C语言的规则自动缩进
-set shiftwidth=4 "自动缩进时，使用4个空格，默认是8个
+set shiftwidth=2 "自动缩进时，使用2个空格，默认是8个
 set backspace=indent,eol,start "激活退格删除
 set mouse=a "使用鼠标
 "set tw=80 fo+=Mm "80字自动换行，或全选后按gq
@@ -72,7 +72,8 @@ autocmd FileType php noremap <C-L> :!php -l %<CR>
 "php doc注释插件
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
+"let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
+let g:pdv_cfg_Author = 'Xuewu Sun <xuewu.sun@qyer.com> ' . strftime("%F")
 
 "vim session插件配置
 let g:session_autoload = 'no'
