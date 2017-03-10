@@ -7,10 +7,10 @@ set ruler "在右下角显示光标的坐标
 set hlsearch "高亮显示搜索结果
 set incsearch "边输边搜，即时更新搜索结果
 set showcmd "在ruler左边显示当前正在输入的命令
-set expandtab "将tab键改为空格，默认是8个
+set expandtab "将tab键改为空格
 set tabstop=2 "将tab键改为2个空格
 set cindent "使用C语言的规则自动缩进
-set shiftwidth=2 "自动缩进时，使用2个空格，默认是8个
+set shiftwidth=4 "自动缩进时，使用4个空格，默认是8个
 set backspace=indent,eol,start "激活退格删除
 set mouse=a "使用鼠标
 "set tw=80 fo+=Mm "80字自动换行，或全选后按gq
