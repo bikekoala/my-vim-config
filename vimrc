@@ -23,6 +23,10 @@ set noerrorbells
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
+
+"vim配色方案
+:colo peachpuff
+
 "上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
