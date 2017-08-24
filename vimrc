@@ -76,8 +76,7 @@ autocmd FileType php noremap <C-L> :!php -l %<CR>
 "php doc注释插件
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-"let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
-let g:pdv_cfg_Author = 'Xuewu Sun <xuewu.sun@qyer.com> ' . strftime("%F")
+let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
 
 "vim session插件配置
 let g:session_autoload = 'no'
