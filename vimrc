@@ -88,8 +88,16 @@ let g:session_autosave = 'yes'
 let g:session_command_aliases = 1
 
 "powerline
-set guifont=PowerlineSymbols\ for\ Powerline
-set nocompatible
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+"set t_Co=256
+"set laststatus=2
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 set t_Co=256
 set laststatus=2
-let g:Powerline_symbols = 'compatible'
+set noshowmode
+set nocompatible
+
