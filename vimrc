@@ -92,7 +92,8 @@ let g:session_command_aliases = 1
 "set nocompatible
 "set t_Co=256
 "set laststatus=2
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+"set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=~/./Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
