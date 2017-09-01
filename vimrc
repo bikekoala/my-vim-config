@@ -18,11 +18,15 @@ set mouse=a "使用鼠标
 set bufhidden=hide
 setlocal noswapfile
 "不让vim发出讨厌的滴滴声
-set noerrorbells
+"set noerrorbells
+"set visualbell
 "文件编码
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
+
+"在所有 window 中都顯示狀態列
+"set laststatus=2
 
 "vim配色方案
 :colo peachpuff
@@ -76,9 +80,16 @@ autocmd FileType php noremap <C-L> :!php -l %<CR>
 "php doc注释插件
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
+let g:pdv_cfg_Author = 'popfeng <xuewu.sun@juzigo.com> ' . strftime("%F")
 
 "vim session插件配置
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_command_aliases = 1
+
+"powerline
+set guifont=PowerlineSymbols\ for\ Powerline
+set nocompatible
+set t_Co=256
+set laststatus=2
+let g:Powerline_symbols = 'compatible'
