@@ -54,10 +54,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
 " javascript
-Plugin 'marijnh/tern_for_vim', {'do': 'npm install'}
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'w0rp/ale'
-"Plugin 'scrooloose/syntastic'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'posva/vim-vue'
+Plugin 'chemzqm/wxapp.vim'
 
 call vundle#end()
 
@@ -89,23 +89,6 @@ python3 del powerline_setup
 "nnoremap <C-K> :call PhpDocSingle()<CR>
 "vnoremap <C-K> :call PhpDocRange()<CR>
 "let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
-
-" YouCompleteMe
-" 自动开启语义补全
-let g:ycm_seed_identifiers_with_syntax = 1
-"字符串中也开启补全
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-" 开启基于 tag 的补全，可以在这之后添加需要的标签路径
-let g:ycm_collect_identifiers_from_tags_files = 1
-" 开始补全的字符数
-let g:ycm_min_num_of_chars_for_completion = 2
-" 补全后自动关闭预览窗口
-let g:ycm_autoclose_preview_window_after_completion = 1
-" 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
@@ -141,22 +124,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_linters = {
 \   'javascript': ['standard']
 \}
+
 " 保存时自动格式化
 "autocmd bufwritepost *.js silent !standard --fix %
 "set autoread
-
-"" syntastic
-"" @see https://standardjs.com/readme-zhcn.html
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_javascript_checkers = ['standard']
-"hi QuickFixLine ctermbg=238
-"" 保存时自动格式化
-""autocmd bufwritepost *.js silent !standard --fix %
-""set autoread
