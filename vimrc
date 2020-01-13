@@ -45,21 +45,17 @@ filetype plugin indent on
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 
-" PATHOGEN 插件
-execute pathogen#infect()
-
-" Vundle 插件
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-
+call plug#begin()
+Plug 'preservim/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/taglist.vim'
 " javascript
-Plugin 'w0rp/ale'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-Plugin 'posva/vim-vue'
-Plugin 'chemzqm/wxapp.vim'
-
-call vundle#end()
+Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'w0rp/ale'
+Plug 'posva/vim-vue'
+Plug 'chemzqm/wxapp.vim'
+call plug#end()
 
 " NERDTREE
 let NERDTreeWinSize=24
