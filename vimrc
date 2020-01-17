@@ -34,6 +34,7 @@ set wildmode=longest:list,full
 " 文件编码
 set enc=utf8
 set fencs=utf8
+set encoding=utf-8
 set fileencodings=utf-8
 " 打开对文件类型插件的支持
 filetype off
@@ -46,9 +47,15 @@ nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 
 call plug#begin()
-Plug 'preservim/nerdtree'
+" basic
+Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
+Plug 'gu-fan/simpleterm.vim'
 Plug 'vim-scripts/taglist.vim'
+" nerdtree
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " javascript
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,11 +65,18 @@ Plug 'chemzqm/wxapp.vim'
 call plug#end()
 
 " NERDTREE
-let NERDTreeWinSize=24
+let NERDTreeWinSize=25
 let NERDTreeShowBookmarks=0
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=2
+let NERDTreeDirArrowExpandable="\u00a0"
+let NERDTreeDirArrowCollapsible="\u00a0"
 "let NERDTreeShowHidden=1
+let WebDevIconsNerdTreeBeforeGlyphPadding=''
+let WebDevIconsUnicodeDecorateFolderNodes=v:true
+"let nerdtree_tabs_open_on_console_startup=1
+let nerdtree_tabs_synchronize_view=0
+highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 
 " taglist
@@ -77,9 +91,6 @@ set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-
-" php定制内容
-"autocmd FileType php noremap <C-L> :!php -l %<CR>
 
 " phpdoc注释插件
 "nnoremap <C-K> :call PhpDocSingle()<CR>
@@ -124,3 +135,14 @@ let g:ale_linters = {
 " 保存时自动格式化
 "autocmd bufwritepost *.js silent !standard --fix %
 "set autoread
+
+"augroup filetype_nerdtree
+"  au!
+"  au FileType nerdtree call s:disable_lightline_on_nerdtree()
+"  au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
+"augroup END
+"
+"fu s:disable_lightline_on_nerdtree() abort
+"  let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
+"  call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
+"endfu
