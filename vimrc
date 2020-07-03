@@ -3,6 +3,7 @@
 
 " 基本配置
 "set ic " 查找时忽略大小写
+set clipboard=unnamed " 拷贝字符到系统剪切板
 set nonu " 显示行号
 set ruler " 在右下角显示光标的坐标
 set hlsearch " 高亮显示搜索结果
@@ -50,18 +51,14 @@ call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
-Plug 'gu-fan/simpleterm.vim'
-Plug 'vim-scripts/taglist.vim'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " javascript
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 Plug 'posva/vim-vue'
-Plug 'chemzqm/wxapp.vim'
 call plug#end()
 
 " NERDTREE
