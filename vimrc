@@ -1,4 +1,3 @@
-"set autoread
 " 个人配置信息
 
 " 基本配置
@@ -10,9 +9,9 @@ set hlsearch " 高亮显示搜索结果
 set incsearch " 边输边搜，即时更新搜索结果
 set showcmd " 在ruler左边显示当前正在输入的命令
 set expandtab " 将tab键改为空格
-set tabstop=2 " 将tab键改为n个空格
+set tabstop=4 " 将tab键改为n个空格
 set cindent " 使用C语言的规则自动缩进
-set shiftwidth=2 " 自动缩进时，使用4个空格，默认是8个
+set shiftwidth=4 " 自动缩进时，使用4个空格，默认是8个
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
 set noshowmode " 不显示左下角的状态行
@@ -47,6 +46,7 @@ filetype plugin indent on
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 
+" Plug
 call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
@@ -54,10 +54,11 @@ Plug 'kien/ctrlp.vim'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" javascript
-Plug 'pangloss/vim-javascript'
+" completion & linting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
+" javascript
+Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 call plug#end()
 
@@ -85,14 +86,9 @@ let Tlist_Exit_OnlyWindow = 1
 
 " powerline
 set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-
-" phpdoc注释插件
-"nnoremap <C-K> :call PhpDocSingle()<CR>
-"vnoremap <C-K> :call PhpDocRange()<CR>
-"let g:pdv_cfg_Author = 'popfeng <popfeng@yeah.net> ' . strftime("%F")
+"python3 from powerline.vim import setup as powerline_setup
+"python3 powerline_setup()
+"python3 del powerline_setup
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
@@ -100,7 +96,7 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
 
-" ale
+" ale 语法检查
 " 关闭始终开启标志列
 let g:ale_sign_column_always = 0
 let g:ale_set_highlights = 0
@@ -126,20 +122,18 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 " 使用 standard|jslint 对 javascript 进行语法检查
 let g:ale_linters = {
-\   'javascript': ['standard']
+\   'javascript': ['standard'],
+\   'php': ['langserver']
 \}
+" php 语法检查配置
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
 
-" 保存时自动格式化
-"autocmd bufwritepost *.js silent !standard --fix %
-"set autoread
+" phpdoc注释插件
+nnoremap <C-K> :call PhpDocSingle()<CR>
+vnoremap <C-K> :call PhpDocRange()<CR>
+let g:pdv_cfg_Author = '孙学武 <sunxuewu@moxiu.net> ' . strftime("%F")
 
-"augroup filetype_nerdtree
-"  au!
-"  au FileType nerdtree call s:disable_lightline_on_nerdtree()
-"  au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
-"augroup END
-"
-"fu s:disable_lightline_on_nerdtree() abort
-"  let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
-"  call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
-"endfu
+" coc-phpls 是 php 代码提示插件，同时也是 coc.nvim 的扩展。使用它需要：
+" 1. :CocInstall coc-phpls
+" 2. :CocConfig 配置 coc-settings.json
