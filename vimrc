@@ -9,9 +9,8 @@ set hlsearch " 高亮显示搜索结果
 set incsearch " 边输边搜，即时更新搜索结果
 set showcmd " 在ruler左边显示当前正在输入的命令
 set expandtab " 将tab键改为空格
-set tabstop=4 " 将tab键改为n个空格
+set tabstop=2 " 将tab键改为n个空格
 set cindent " 使用C语言的规则自动缩进
-set shiftwidth=4 " 自动缩进时，使用4个空格，默认是8个
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
 set noshowmode " 不显示左下角的状态行
@@ -41,6 +40,14 @@ filetype off
 filetype indent on
 filetype plugin on
 filetype plugin indent on
+" 首行缩进
+au BufRead,BufNewFile *.vue set filetype=html
+au BufRead,BufNewFile *.ts set filetype=javascript
+autocmd FileType php set sw=4
+autocmd FileType html set sw=2
+autocmd FileType js set sw=2
+autocmd FileType vue set sw=2
+autocmd FileType javascript set sw=2
 
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
@@ -129,11 +136,13 @@ let g:ale_linters = {
 let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
 
-" phpdoc注释插件
+" phpdoc 注释插件
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
 let g:pdv_cfg_Author = '孙学武 <sunxuewu@moxiu.net> ' . strftime("%F")
 
+" coc 代码补全
 " coc-phpls 是 php 代码提示插件，同时也是 coc.nvim 的扩展。使用它需要：
 " 1. :CocInstall coc-phpls
 " 2. :CocConfig 配置 coc-settings.json
+let g:coc_disable_startup_warning = 1
