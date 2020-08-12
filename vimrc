@@ -44,8 +44,8 @@ filetype plugin indent on
 au BufRead,BufNewFile *.vue set filetype=html
 au BufRead,BufNewFile *.ts set filetype=javascript
 autocmd FileType php set sw=4
+autocmd FileType json set sw=2
 autocmd FileType html set sw=2
-autocmd FileType js set sw=2
 autocmd FileType vue set sw=2
 autocmd FileType javascript set sw=2
 
@@ -57,16 +57,19 @@ nmap <F12> <ESC>:tabnext<RETURN>
 call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
+Plug 'yegappan/taglist'
 Plug 'kien/ctrlp.vim'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" completion & linting
+" completion & linting (:CocInstall coc-phpls)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 " javascript
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
+" php
+Plug 'mikehaertl/pdv-standalone'
 call plug#end()
 
 " NERDTREE
@@ -76,10 +79,8 @@ let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=2
 let NERDTreeDirArrowExpandable="\u00a0"
 let NERDTreeDirArrowCollapsible="\u00a0"
-"let NERDTreeShowHidden=1
 let WebDevIconsNerdTreeBeforeGlyphPadding=''
 let WebDevIconsUnicodeDecorateFolderNodes=v:true
-"let nerdtree_tabs_open_on_console_startup=1
 let nerdtree_tabs_synchronize_view=0
 highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
@@ -87,15 +88,11 @@ nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 " taglist
 nmap <F1> <ESC>:TlistToggle<RETURN>
 set tags=tags
-set autochdir
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 
-" powerline
+" Powerline
 set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
-"python3 from powerline.vim import setup as powerline_setup
-"python3 powerline_setup()
-"python3 del powerline_setup
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
@@ -103,46 +100,7 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
 
-" ale 语法检查
-" 关闭始终开启标志列
-let g:ale_sign_column_always = 0
-let g:ale_set_highlights = 0
-" 自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = ' ○'
-" 在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', '○ %d', '✔ OK']
-" 显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" 普通模式下，ap前往上一个错误或警告，an前往下一个错误或警告
-nmap ap <Plug>(ale_previous_wrap)
-nmap an <Plug>(ale_next_wrap)
-" <Leader>t触发/关闭语法检查
-nmap <Leader>t :ALEToggle<CR>
-" <Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-" 文件内容发生变化时不进行检查
-let g:ale_lint_on_text_changed = 'never'
-" 打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-" 使用 standard|jslint 对 javascript 进行语法检查
-let g:ale_linters = {
-\   'javascript': ['standard'],
-\   'php': ['langserver']
-\}
-" php 语法检查配置
-let g:ale_php_langserver_use_global = 1
-let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
-
-" phpdoc 注释插件
+" phpdoc
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = '孙学武 <sunxuewu@moxiu.net> ' . strftime("%F")
-
-" coc 代码补全
-" coc-phpls 是 php 代码提示插件，同时也是 coc.nvim 的扩展。使用它需要：
-" 1. :CocInstall coc-phpls
-" 2. :CocConfig 配置 coc-settings.json
-let g:coc_disable_startup_warning = 1
+let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
