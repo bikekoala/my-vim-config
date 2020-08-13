@@ -57,8 +57,9 @@ nmap <F12> <ESC>:tabnext<RETURN>
 call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
-Plug 'yegappan/taglist'
 Plug 'kien/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -85,22 +86,39 @@ let nerdtree_tabs_synchronize_view=0
 highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 
-" taglist
-nmap <F1> <ESC>:TlistToggle<RETURN>
-set tags=tags
-let Tlist_Use_Right_Window = 1
-let Tlist_Exit_OnlyWindow = 1
-
-" Powerline
-set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
+" Tagbar
+set tags=.tags
+nmap <F1> :TagbarToggle<CR>
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
+nnoremap <leader>. :CtrlPTag<cr>
 
 " phpdoc
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
 let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
+
+" Powerline
+set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
+
+" Gutentags
+" Gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.git']
+" 所生成的数据文件的名称 "
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
