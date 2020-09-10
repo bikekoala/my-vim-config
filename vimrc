@@ -108,7 +108,7 @@ set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
 
 " Gutentags
 " Gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.git']
+let g:gutentags_project_root = ['.git', '.vue']
 " 所生成的数据文件的名称 "
 let g:gutentags_ctags_tagfile = '.tags'
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
