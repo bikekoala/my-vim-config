@@ -41,13 +41,13 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 " 首行缩进
-au BufRead,BufNewFile *.vue set filetype=html
 au BufRead,BufNewFile *.ts set filetype=javascript
-autocmd FileType php set sw=4
-autocmd FileType json set sw=2
-autocmd FileType html set sw=2
+autocmd FileType vue syntax sync fromstart
 autocmd FileType vue set sw=2
 autocmd FileType javascript set sw=2
+autocmd FileType json set sw=2
+autocmd FileType html set sw=2
+autocmd FileType php set sw=4
 
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
