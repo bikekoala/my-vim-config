@@ -74,6 +74,7 @@ Plug 'mikehaertl/pdv-standalone'
 call plug#end()
 
 " NERDTREE
+let NERDTreeWinPos="right"
 let NERDTreeWinSize=25
 let NERDTreeShowBookmarks=0
 let NERDTreeChDirMode=2
@@ -87,6 +88,8 @@ highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 
 " Tagbar
+" Ctrl+] 跳转
+" Ctrl+o 返回
 set tags=.tags
 nmap <F1> :TagbarToggle<CR>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
