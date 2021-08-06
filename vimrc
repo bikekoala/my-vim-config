@@ -41,6 +41,7 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 " 首行缩进
+autocmd BufRead,BufNewFile *.ts set filetype=javascript
 au BufRead,BufNewFile *.ts set filetype=javascript
 autocmd FileType vue syntax sync fromstart
 autocmd FileType vue set sw=2
@@ -63,9 +64,8 @@ Plug 'ludovicchabant/vim-gutentags'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" completion & linting (:CocInstall coc-phpls)
+" completion & linting (:CocInstall coc-json coc-tsserver coc-phpls)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'w0rp/ale'
 " javascript
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
@@ -107,7 +107,8 @@ vnoremap <C-K> :call PhpDocRange()<CR>
 let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
 " Powerline
-set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
+"set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
+set rtp+=/usr/local/lib/python3.9/site-packages/powerline/bindings/vim
 
 " Gutentags
 " Gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
