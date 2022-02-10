@@ -10,6 +10,7 @@ set incsearch " 边输边搜，即时更新搜索结果
 set showcmd " 在ruler左边显示当前正在输入的命令
 set expandtab " 将tab键改为空格
 set tabstop=2 " 将tab键改为n个空格
+set sw=4 " 默认首行缩进
 set cindent " 使用C语言的规则自动缩进
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
@@ -42,13 +43,11 @@ filetype plugin on
 filetype plugin indent on
 " 首行缩进
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
-au BufRead,BufNewFile *.ts set filetype=javascript
 autocmd FileType vue syntax sync fromstart
 autocmd FileType vue set sw=2
 autocmd FileType javascript set sw=2
 autocmd FileType json set sw=2
 autocmd FileType html set sw=2
-autocmd FileType php set sw=4
 
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
@@ -64,13 +63,13 @@ Plug 'ludovicchabant/vim-gutentags'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" completion & linting (:CocInstall coc-json coc-tsserver coc-phpls)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " javascript
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 " php
-Plug 'mikehaertl/pdv-standalone'
+"Plug 'mikehaertl/pdv-standalone'
+" completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " NERDTREE
@@ -102,9 +101,9 @@ let g:ctrlp_line_prefix = '♪ '
 nnoremap <leader>. :CtrlPTag<cr>
 
 " phpdoc
-nnoremap <C-K> :call PhpDocSingle()<CR>
-vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
+"nnoremap <C-K> :call PhpDocSingle()<CR>
+"vnoremap <C-K> :call PhpDocRange()<CR>
+"let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
 " Powerline
 "set rtp+=~/Library/Python/3.7/lib/python/site-packages/powerline/bindings/vim
