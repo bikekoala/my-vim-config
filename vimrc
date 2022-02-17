@@ -49,6 +49,16 @@ autocmd FileType javascript set sw=2
 autocmd FileType json set sw=2
 autocmd FileType html set sw=2
 
+" 美化界面
+set fillchars+=vert:\ " 设置纵向分割线填充字符
+highlight EndOfBuffer ctermfg=black " 设置波浪号颜色为黑色
+highlight StatusLine ctermfg=238
+highlight StatusLineNC ctermfg=238
+highlight VertSplit ctermfg=238
+highlight Directory ctermfg=cyan
+highlight clear CursorLine
+highlight CursorLine ctermfg=white ctermbg=black
+
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
