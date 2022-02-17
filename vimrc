@@ -55,7 +55,7 @@ highlight EndOfBuffer ctermfg=black " 设置波浪号颜色为黑色
 highlight StatusLine ctermfg=238
 highlight StatusLineNC ctermfg=238
 highlight VertSplit ctermfg=238
-highlight Directory ctermfg=cyan
+highlight Directory ctermfg=180
 highlight clear CursorLine
 highlight CursorLine ctermfg=white ctermbg=black
 
