@@ -15,7 +15,7 @@ set cindent " 使用C语言的规则自动缩进
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
 set noshowmode " 不显示左下角的状态行
-"set laststatus=2 " 在所有 window 中都顯示狀態列
+set laststatus=2 " 在所有 window 中都顯示狀態列
 "set tw=80 fo+=Mm " 80字自动换行，或全选后按gq
 set noswapfile " 不要生成swap文件，当buffer被丢弃的时候隐藏它
 set autoread " 打开文件监视
@@ -83,6 +83,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " NERDTREE
+let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=25
 let NERDTreeShowBookmarks=0
@@ -116,12 +117,13 @@ nnoremap <leader>. :CtrlPTag<cr>
 "let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
 " Powerline
-let s:uname = system("uname -s")
-if s:uname == "Darwin\n"
-    set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
-else
-    set rtp+=/usr/local/lib/python3.9/site-packages/powerline/bindings/vim
-endif
+set rtp+=./powerline
+"let s:uname = system("uname -s")
+"if s:uname == "Darwin\n"
+"    set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
+"else
+"    set rtp+=/usr/local/lib/python3.9/site-packages/powerline/bindings/vim
+"endif
 
 " Gutentags
 " Gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
