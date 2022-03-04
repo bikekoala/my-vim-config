@@ -117,7 +117,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 "let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
 " Powerline
-set rtp+=./powerline
+set rtp+=~/.vim/powerline
 "let s:uname = system("uname -s")
 "if s:uname == "Darwin\n"
 "    set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
