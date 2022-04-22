@@ -78,6 +78,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 " php
 "Plug 'mikehaertl/pdv-standalone'
+" c
+Plug 'skywind3000/asyncrun.vim'
 " completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -141,3 +143,8 @@ endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" C 自动编译执行
+let g:asyncrun_open = 10
+let g:asyncrun_bell = 1
+noremap <F10> :AsyncRun mkdir -p build && gcc -fsanitize=address -fno-omit-frame-pointer -g % -o build/%< && ./build/%<<cr>
