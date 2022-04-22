@@ -117,11 +117,6 @@ let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
 nnoremap <leader>. :CtrlPTag<cr>
 
-" phpdoc
-"nnoremap <C-K> :call PhpDocSingle()<CR>
-"vnoremap <C-K> :call PhpDocRange()<CR>
-"let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
-
 " Powerline
 set rtp+=~/.vim/powerline
 "let s:uname = system("uname -s")
@@ -148,7 +143,12 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" C 自动编译执行
+" PHP 生成方法描述
+"nnoremap <C-K> :call PhpDocSingle()<CR>
+"vnoremap <C-K> :call PhpDocRange()<CR>
+"let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
+
+" C 语言自动编译执行
 let g:asyncrun_open = 10
 let g:asyncrun_bell = 1
 noremap <F10> :AsyncRun mkdir -p build && gcc -fsanitize=address -fno-omit-frame-pointer -g % -o build/%< && ./build/%<<cr>
