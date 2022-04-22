@@ -69,6 +69,7 @@ call plug#begin()
 Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
+Plug 'ojroques/vim-oscyank'
 Plug 'ludovicchabant/vim-gutentags'
 " nerdtree
 Plug 'preservim/nerdtree'
@@ -83,6 +84,9 @@ Plug 'skywind3000/asyncrun.vim'
 " completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" OSC52 copy text
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
 " NERDTREE
 let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
@@ -119,7 +123,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 "let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
 " Powerline
-set rtp+=./powerline
+set rtp+=~/.vim/powerline
 "let s:uname = system("uname -s")
 "if s:uname == "Darwin\n"
 "    set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
