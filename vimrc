@@ -60,6 +60,7 @@ highlight VertSplit ctermfg=238
 highlight Directory ctermfg=180
 highlight clear CursorLine
 highlight CursorLine ctermfg=white ctermbg=black
+highlight Pmenu ctermbg=black ctermfg=white " coc-tsserver 菜单颜色
 
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
