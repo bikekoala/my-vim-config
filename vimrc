@@ -1,6 +1,5 @@
-" 个人配置信息
-
-" 基本配置
+"" 基本配置
+""""""""""""
 "set ic " 查找时忽略大小写
 set clipboard=unnamed " 拷贝字符到系统剪切板
 set nonu " 显示行号
@@ -50,7 +49,6 @@ autocmd FileType json set sw=2
 autocmd FileType html set sw=2
 autocmd FileType c set sw=2
 autocmd FileType h set sw=2
-
 " 美化界面
 set fillchars+=vert:\ " 设置纵向分割线填充字符
 highlight EndOfBuffer ctermfg=black " 设置波浪号颜色为黑色
@@ -61,12 +59,12 @@ highlight Directory ctermfg=180
 highlight clear CursorLine
 highlight CursorLine ctermfg=white ctermbg=black
 highlight Pmenu ctermbg=black ctermfg=white " coc-tsserver 菜单颜色
-
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 
-" Plug
+"" Plug
+""""""""
 call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
@@ -88,10 +86,12 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-" OSC52 copy text
+"" OSC52 copy text
+"""""""""""""""""""
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
-" NERDTREE
+"" NERDTREE
+""""""""""""
 let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=25
@@ -106,21 +106,24 @@ let nerdtree_tabs_synchronize_view=0
 highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 
-" Tagbar
+"" Tagbar
+""""""""""
 " Ctrl+] 跳转
 " Ctrl+o 返回
 set tags=.tags
 nmap <F1> :TagbarToggle<CR>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
-" CtrlP
+"" CtrlP
+""""""""
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
 nnoremap <leader>. :CtrlPTag<cr>
 
-" Powerline
+"" Powerline
+"""""""""""""
 set rtp+=~/.vim/powerline
 "let s:uname = system("uname -s")
 "if s:uname == "Darwin\n"
@@ -129,7 +132,8 @@ set rtp+=~/.vim/powerline
 "    set rtp+=/usr/local/lib/python3.9/site-packages/powerline/bindings/vim
 "endif
 
-" Gutentags
+"" Gutentags
+"""""""""""""
 let g:gutentags_ctags_exclude = [
       \ '.git',
       \ '.vue',
@@ -163,12 +167,50 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" PHP 生成方法描述
+"" coc-nvim
+""""""""""""
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+"" PHP Doc
+"""""""""""
 "nnoremap <C-K> :call PhpDocSingle()<CR>
 "vnoremap <C-K> :call PhpDocRange()<CR>
 "let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
-" C 语言自动编译执行
+"" C 语言自动编译执行
+"""""""""""""""""""""
 let g:asyncrun_open = 10
 let g:asyncrun_bell = 1
 noremap <F10> :AsyncRun mkdir -p build && gcc -fsanitize=address -fno-omit-frame-pointer -g % -o build/%< && ./build/%<<cr>
