@@ -58,10 +58,13 @@ highlight VertSplit ctermfg=238
 highlight Directory ctermfg=180
 highlight clear CursorLine
 highlight CursorLine ctermfg=white ctermbg=black
+highlight Pmenu ctermbg=black ctermfg=white " coc-tsserver 菜单颜色
 
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
-nmap <F12> <ESC>:tabnext<RETURN>
+
+" OSC52 copy text
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endifmap <F12> <ESC>:tabnext<RETURN>
 
 " Plug
 call plug#begin()
@@ -84,9 +87,6 @@ Plug 'skywind3000/asyncrun.vim'
 " completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-" OSC52 copy text
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
 " NERDTREE
 let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
