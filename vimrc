@@ -48,6 +48,8 @@ autocmd FileType vue set sw=2
 autocmd FileType javascript set sw=2
 autocmd FileType json set sw=2
 autocmd FileType html set sw=2
+autocmd FileType c set sw=2
+autocmd FileType h set sw=2
 
 " 美化界面
 set fillchars+=vert:\ " 设置纵向分割线填充字符
@@ -169,3 +171,4 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:asyncrun_open = 10
 let g:asyncrun_bell = 1
 noremap <F10> :AsyncRun mkdir -p build && gcc -fsanitize=address -fno-omit-frame-pointer -g % -o build/%< && ./build/%<<cr>
+"noremap <F10> :AsyncRun mkdir -p build && gcc -g % -o build/%< && ./build/%<<cr>
