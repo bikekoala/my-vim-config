@@ -1,7 +1,7 @@
 "" 基本配置
 """"""""""""
 "set ic " 查找时忽略大小写
-set clipboard=unnamed " 拷贝字符到系统剪切板
+"set clipboard=unnamed " 拷贝字符到系统剪切板
 set nonu " 显示行号
 set ruler " 在右下角显示光标的坐标
 set hlsearch " 高亮显示搜索结果
@@ -22,7 +22,6 @@ set noeb vb t_vb= " 不让vim发出滴滴声
 set visualbell " 出错时，发出视觉提示，通常是屏幕闪烁
 set mouse=a " 使用鼠标
 set t_Co=256 " 开启256色支持
-:colo peachpuff " vim配色方案
 syntax enable " 打开语法高亮
 " 如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的小方块
 set listchars=tab:»■,trail:■
@@ -50,15 +49,8 @@ autocmd FileType html set sw=2
 autocmd FileType c set sw=2
 autocmd FileType h set sw=2
 " 美化界面
+:colo classic
 set fillchars+=vert:\ " 设置纵向分割线填充字符
-highlight EndOfBuffer ctermfg=black " 设置波浪号颜色为黑色
-highlight StatusLine ctermfg=238
-highlight StatusLineNC ctermfg=238
-highlight VertSplit ctermfg=238
-highlight Directory ctermfg=180
-highlight clear CursorLine
-highlight CursorLine ctermfg=white ctermbg=black
-highlight Pmenu ctermbg=black ctermfg=white " coc-tsserver 菜单颜色
 " 上一个/下一个标签页切换的快捷键
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
