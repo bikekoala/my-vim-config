@@ -61,5 +61,8 @@ hi Todo term=standout ctermfg=0 ctermbg=3 guifg=Blue guibg=Yellow
 " 自定义
 hi clear CursorLine
 hi CursorLine ctermfg=white ctermbg=black
-hi Pmenu ctermbg=black ctermfg=white " 菜单颜色
 hi EndOfBuffer ctermfg=black " 设置波浪号颜色为黑色
+hi Pmenu ctermbg=black ctermfg=white " 菜单颜色
+hi PmenuSbar ctermbg=240 " 菜单滚动条背景
+hi PmenuThumb ctermbg=188 " 菜单滚动条前景
+hi PmenuSel ctermfg=yellow ctermbg=yellow
