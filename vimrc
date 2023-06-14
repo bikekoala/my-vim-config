@@ -23,9 +23,7 @@ set visualbell " 出错时，发出视觉提示，通常是屏幕闪烁
 set mouse=a " 使用鼠标
 set t_Co=256 " 开启256色支持
 syntax enable " 打开语法高亮
-" 如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的小方块
-set listchars=tab:»■,trail:■
-set list
+set nolist " 隐藏行尾的$
 " 命令模式下，底部操作指令按下 Tab 键自动补全
 set wildmenu
 set wildmode=longest:list,full
@@ -34,6 +32,7 @@ set enc=utf8
 set fencs=utf8
 set encoding=utf-8
 set fileencodings=utf-8
+scriptencoding utf-8
 " 打开对文件类型插件的支持
 filetype off
 filetype indent on
