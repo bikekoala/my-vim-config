@@ -10,7 +10,6 @@ set showcmd " 在ruler左边显示当前正在输入的命令
 set expandtab " 将tab键改为空格
 set tabstop=2 " 将tab键改为n个空格
 set shiftwidth=2 " 默认首行缩进
-set cindent " 使用C语言的规则自动缩进
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
 set noshowmode " 不显示左下角的状态行
@@ -43,6 +42,7 @@ filetype plugin indent on
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
 autocmd FileType vue syntax sync fromstart
 autocmd FileType python set shiftwidth=4 | set tabstop=4
+let g:pyindent_open_paren = 4
 " 美化界面
 :colo classic
 set fillchars+=vert:\ " 设置纵向分割线填充字符
