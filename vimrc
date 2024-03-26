@@ -1,15 +1,16 @@
 "" 基本配置
 """"""""""""
 "set ic " 查找时忽略大小写
-"set clipboard=unnamed " 拷贝字符到系统剪切板
+set clipboard=unnamed " 拷贝字符到系统剪切板
 set nonu " 显示行号
 set ruler " 在右下角显示光标的坐标
 set hlsearch " 高亮显示搜索结果
 set incsearch " 边输边搜，即时更新搜索结果
 set showcmd " 在ruler左边显示当前正在输入的命令
 set expandtab " 将tab键改为空格
+set atoindent " 自动缩进
 set tabstop=2 " 将tab键改为n个空格
-set sw=4 " 默认首行缩进
+set shiftwidth=4 " 默认首行缩进
 set cindent " 使用C语言的规则自动缩进
 set backspace=indent,eol,start " 激活退格删除
 set nocompatible " 取消vi兼容
@@ -42,12 +43,14 @@ filetype plugin indent on
 " 首行缩进
 autocmd BufRead,BufNewFile *.ts set filetype=javascript
 autocmd FileType vue syntax sync fromstart
-autocmd FileType vue set sw=2
-autocmd FileType javascript set sw=2
-autocmd FileType json set sw=2
-autocmd FileType html set sw=2
-autocmd FileType c set sw=2
-autocmd FileType h set sw=2
+autocmd FileType vue set shiftwidth=2
+autocmd FileType javascript set shiftwidth=2
+autocmd FileType json set shiftwidth=2
+autocmd FileType html set shiftwidth=2
+autocmd FileType c set shiftwidth=2
+autocmd FileType h set shiftwidth=2
+autocmd FileType python set shiftwidth=4 | set tabstop=4
+
 " 美化界面
 :colo classic
 set fillchars+=vert:\ " 设置纵向分割线填充字符
@@ -64,6 +67,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ojroques/vim-oscyank'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-autoformat/vim-autoformat'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -74,7 +78,9 @@ Plug 'posva/vim-vue'
 "Plug 'mikehaertl/pdv-standalone'
 " c
 Plug 'skywind3000/asyncrun.vim'
-" completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd)
+" python
+Plug 'neoclide/coc-jedi'
+" completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd coc-jedi)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -82,15 +88,22 @@ call plug#end()
 """""""""""""""""""
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
+"" Autoformat
+""""""""""""
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+nnoremap = :Autoformat<CR>
+
 "" NERDTREE
 """"""""""""
 let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
-let NERDTreeWinPos="right"
+let NERDTreeWinPos='right'
 let NERDTreeWinSize=25
 let NERDTreeShowBookmarks=0
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=2
-let NERDTreeDirArrowExpandable="\u00a0"
+let NERDTreeDirArrowExpandable="\u00a+0"
 let NERDTreeDirArrowCollapsible="\u00a0"
 let WebDevIconsNerdTreeBeforeGlyphPadding=''
 let WebDevIconsUnicodeDecorateFolderNodes=v:true
@@ -104,7 +117,7 @@ nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 " Ctrl+o 返回
 set tags=.tags
 nmap <F1> :TagbarToggle<CR>
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nnoremap <silent> <leader>b :TagbarToggle<CR>
 
 "" CtrlP
 """"""""
