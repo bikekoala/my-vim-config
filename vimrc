@@ -1,5 +1,5 @@
-"" 基本配置
-""""""""""""
+" 基本配置
+"""""""""""""
 "set ic " 查找时忽略大小写
 "set clipboard=unnamed " 拷贝字符到系统剪切板
 set nonu " 显示行号
@@ -50,8 +50,13 @@ set fillchars+=vert:\ " 设置纵向分割线填充字符
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 
-"" Plug
-""""""""
+" OSC52 copy text
+"""""""""""""""""""
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+
+
+" Plug
+"""""""""""""
 call plug#begin()
 " basic
 Plug 'mhinz/vim-signify'
@@ -70,21 +75,19 @@ Plug 'posva/vim-vue'
 Plug 'mikehaertl/pdv-standalone'
 " c
 Plug 'skywind3000/asyncrun.vim'
+" python
+Plug 'Yggdroot/indentLine'
 " completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd coc-jedi)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-"" OSC52 copy text
-"""""""""""""""""""
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
-
-"" Autoformat
-""""""""""""
+" Autoformat
+"""""""""""""
 let g:formatters_python = ['black']
 nnoremap = :Autoformat<CR>
 
-"" NERDTREE
-""""""""""""
+" NERDTREE
+"""""""""""""
 let NERDTreeStatusline = "V    %{strftime('%a %b %d %H:%M:%S')}"
 let NERDTreeWinPos='right'
 let NERDTreeWinSize=25
@@ -99,23 +102,23 @@ let nerdtree_tabs_synchronize_view=0
 highlight! link NERDTreeFlags NERDTreeDir
 nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 
-"" Tagbar
-""""""""""
+" Tagbar
+"""""""""""""
 " Ctrl+] 跳转
 " Ctrl+o 返回
 set tags=.tags
 nmap <F1> :TagbarToggle<CR>
 nnoremap <silent> <leader>b :TagbarToggle<CR>
 
-"" CtrlP
-""""""""
+" CtrlP
+"""""""""""""
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
 nnoremap <leader>. :CtrlPTag<cr>
 
-"" Powerline
+" Powerline
 """""""""""""
 set rtp+=~/.vim/powerline
 "let s:uname = system("uname -s")
@@ -125,7 +128,7 @@ set rtp+=~/.vim/powerline
 "    set rtp+=/usr/local/lib/python3.9/site-packages/powerline/bindings/vim
 "endif
 
-"" Gutentags
+" Gutentags
 """""""""""""
 let g:gutentags_ctags_exclude = [
       \ '.git',
@@ -160,8 +163,8 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-"" coc-nvim
-""""""""""""
+" coc-nvim
+"""""""""""""
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -200,13 +203,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-"" PHP Doc
-"""""""""""
+" PHP Doc
+"""""""""""""
 "nnoremap <C-K> :call PhpDocSingle()<CR>
 "vnoremap <C-K> :call PhpDocRange()<CR>
 "let g:pdv_cfg_Author = 'evansun <sunxuewu@moxiu.net> ' . strftime("%F")
 
-"" C 语言自动编译执行
+" C 语言自动编译执行
 """""""""""""""""""""
 let g:asyncrun_open = 10
 let g:asyncrun_bell = 1
