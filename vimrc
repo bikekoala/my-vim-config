@@ -54,7 +54,6 @@ nmap <F12> <ESC>:tabnext<RETURN>
 """""""""""""""""""
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
-
 " Plug
 """""""""""""
 call plug#begin()
@@ -64,7 +63,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ojroques/vim-oscyank'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-autoformat/vim-autoformat'
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -75,16 +73,9 @@ Plug 'posva/vim-vue'
 Plug 'mikehaertl/pdv-standalone'
 " c
 Plug 'skywind3000/asyncrun.vim'
-" python
-Plug 'Yggdroot/indentLine'
-" completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd coc-jedi)
+" completion & linting (:CocInstall coc-phpls coc-json coc-tsserver coc-clangd coc-pyright coc-prettier)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-" Autoformat
-"""""""""""""
-let g:formatters_python = ['black']
-nnoremap = :Autoformat<CR>
 
 " NERDTREE
 """""""""""""
@@ -108,7 +99,6 @@ nmap <F2> <ESC>:NERDTreeToggle<RETURN>
 " Ctrl+o 返回
 set tags=.tags
 nmap <F1> :TagbarToggle<CR>
-nnoremap <silent> <leader>b :TagbarToggle<CR>
 
 " CtrlP
 """""""""""""
@@ -116,7 +106,6 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 15
 let g:ctrlp_line_prefix = '♪ '
-nnoremap <leader>. :CtrlPTag<cr>
 
 " Powerline
 """""""""""""
@@ -131,27 +120,12 @@ set rtp+=~/.vim/powerline
 " Gutentags
 """""""""""""
 let g:gutentags_ctags_exclude = [
-      \ '.git',
-      \ '.vue',
-      \ 'node_modules',
-      \ 'build',
-      \ 'dist',
-      \ 'docs',
-      \ 'example',
-      \ 'bundle',
-      \ 'vendor',
-      \ '*.md',
-      \ '*-lock.json',
-      \ 'tags*',
-      \ '*.css',
-      \ '*.less',
-      \ '*.scss',
-      \ '*.exe', '*.dll',
-      \ '*.mp3', '*.ogg', '*.flac',
-      \ '*.swp', '*.swo',
-      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
-      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '.git', 'tags*', 'node_modules', 'build', 'dist', 'docs', 'example', 'bundle', 'vendor',
+      \ '*.vue', '*.md', '*-lock.json', '*.css', '*.less', '*.scss',
+      \ '*.mp3', '*.ogg', '*.flac', '*.wav',
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2'
       \ ]
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
@@ -198,10 +172,9 @@ function! ShowDocumentation()
 endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" Range format
+vmap = <Plug>(coc-format-selected)
+nmap = <Plug>(coc-format-selected)
 
 " PHP Doc
 """""""""""""

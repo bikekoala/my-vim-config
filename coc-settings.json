@@ -1,0 +1,15 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "json", "css", "markdown"],
+
+  "prettier.bracketSameLine": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.trailingComma": "none",
+  "prettier.useEditorConfig": false,
+  "prettier.printWidth": 120,
+
+  "python.formatting.provider": "black",
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.parameterTypes": false
+}
